@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const end = "https://jsonplaceholder.typicode.com/photos";
+      fetch(end)
+        .then((response) => {
+          return response.json();
+        })
+        .then((response) => showdata(response))
+        .catch((error) => showerror(error));
+
+      function showdata(response) {
+        console.log(response);
+
+        response.map((value) => {
+          var container = document.createElement("div");
+          document.body.appendChild(container);
+
+          var img1 = document.createElement("img");
+          img1.setAttribute("src", value.url);
+          img1.style.width = "140px";
+          img1.style.height = "240px";
+          container.appendChild(img1);
+
+          var p2 = document.createElement("p");
+          p2.innerHTML = value.title;
+          container.appendChild(p2);
+        });
+      }
+
+      function showerror(error) {
+        console.log(error);
+      }
+    </script>
+  </body>
+</html>
